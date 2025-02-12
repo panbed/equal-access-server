@@ -12,7 +12,8 @@
         "test": "npm run prebuild && karma start",
         "serve": "serve .",
         "build:help": "ts-node src/genHelp.ts",
-        "build:all": "npm run build && npm run build-node && npm run build-debug && npm run build-node-debug && npm run build:help && shx cp ./src/package.json ./dist/ && shx cp ./README-NPM.md ./dist/README.md"
+        "build:all": "npm run build && npm run build-node && npm run build-debug && npm run build-node-debug && npm run build:help && shx cp ./src/package.json ./dist/ && shx cp ./README-NPM.md ./dist/README.md",
+        "build:types": "tsc -p tsconfig.types.json"
     },
     "author": "IBM",
     "license": "SEE LICENSE IN LICENSE from the 'equal-access' repository",
