@@ -1,35 +1,26 @@
 // import ace from '../../ace-engine/dist/ace-node.js';
 import type { Report } from "./engine-types/v4/api/IReport";
-import { JSDOM } from 'jsdom';
-import { Checker } from '../../ace-engine/dist/ace-node.js';
+// import { JSDOM } from 'jsdom';
+// import { Checker } from '../../ace-engine/dist/ace-node.js';
+import * as puppeteer from "puppeteer";
 
-export async function aceCheck(html: string, guidelineIds?: string | string[]): Promise<Report> {
-  const dom = new JSDOM(html);
-  const g = global as any;
+// Since ace is loaded from a script tag in the js runtime, we need to declare it here
+declare var ace: any;
 
-  g.window = dom.window;
-  g.document = dom.window.document;
-  g.getComputedStyle = dom.window.getComputedStyle;
-  g.Node = dom.window.Node;
-  g.Element = dom.window.Element;
-  g.HTMLElement = dom.window.HTMLElement;
-  g.HTMLInputElement = dom.window.HTMLInputElement;
-  g.HTMLSelectElement = dom.window.HTMLSelectElement;
-  g.HTMLTextAreaElement = dom.window.HTMLTextAreaElement;
-  g.HTMLButtonElement = dom.window.HTMLButtonElement;
-  const checker = new Checker();
-  const report = await checker.check(document, guidelineIds);
+const acePath = '../../ace-engine/dist/ace.js';
 
-  delete g.window;
-  delete g.document;
-  delete g.getComputedStyle;
-  delete g.Node;
-  delete g.Element;
-  delete g.HTMLElement;
-  delete g.HTMLInputElement;
-  delete g.HTMLSelectElement;
-  delete g.HTMLTextAreaElement;
-  delete g.HTMLButtonElement;
+export async function aceCheck(html: string, browser: puppeteer.Browser, guidelineIds?: string | string[]): Promise<Report> {
+  const page = await browser.newPage();
+  await page.setContent(html);
+  await page.addScriptTag({
+    path: require.resolve(acePath)
+  })
+  
+  const report = await page.evaluate(async (guidelineIds) => {
+    const checker = new ace.Checker();
+    const result = await checker.check(document, guidelineIds);
+    return result;
+  }, guidelineIds);
 
   return report;
 }

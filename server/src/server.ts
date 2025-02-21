@@ -4,11 +4,14 @@ import type { Report } from "./engine-types/v4/api/IReport";
 import { Request, Response, NextFunction } from 'express';
 import { aceCheck } from './aceChecker';
 import bodyParser from 'body-parser';
+import * as puppeteer from 'puppeteer';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
+
+let browser: puppeteer.Browser;
 
 const asyncHandler = (fn: (req: Request, res: Response, next: NextFunction) => Promise<any>) =>
   (req: Request, res: Response, next: NextFunction) =>
@@ -34,7 +37,7 @@ app.get('/', (_req, res) => {
 app.post("/scan", asyncHandler(async (req, res) => {
   const html: string = req.body.html;
   const guidelineIds: string | string[] = req.body.guidelineIds;
-  const report: Report = await aceCheck(html, guidelineIds);
+  const report: Report = await aceCheck(html, browser, guidelineIds);
   res.json(report);
 }));
 
@@ -43,7 +46,22 @@ app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   res.status(500).json({ error: err.message });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+(async () => {
+  try {
+    browser = await puppeteer.launch();
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  } catch (err) {
+    console.error("Error launching Puppeteer:", err);
+    process.exit(1);
+  }
+})();
 
+process.on('SIGINT', async () => {
+  console.log('Shutting down...');
+  if (browser) {
+    await browser.close();
+  }
+  process.exit();
+});

@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "axois": "^0.0.1-security",
+    "typescript": "^5.7.3"
+  },
+  "name": "tests",
+  "version": "1.0.0",
+  "main": "test.js",
+  "devDependencies": {
+    "@types/axios": "^0.14.4",
+    "@types/node": "^22.13.5"
+  },
+  "scripts": {
+    "build-test": "tsc",
+    "test": "node test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
