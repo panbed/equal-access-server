@@ -4,9 +4,10 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd ../ace-engine && npm install && npm run build-node && cd ../server && tsc",
+    "build-engine": "cd ../../ace-engine && npm run build",
+    "build": "tsc",
     "start": "node dist/server.js",
-    "dev": "cd ../ace-engine && npm install && npm run build-node && cd ../server && nodemon --exec ts-node src/server.ts"
+    "dev": "nodemon --exec ts-node src/server.ts"
   },
   "keywords": [],
   "author": "",
