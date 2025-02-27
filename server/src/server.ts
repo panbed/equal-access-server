@@ -48,7 +48,9 @@ app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
 
 (async () => {
   try {
-    browser = await puppeteer.launch();
+    browser = await puppeteer.launch({
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });
