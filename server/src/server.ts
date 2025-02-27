@@ -2,7 +2,7 @@ import express from 'express';
 // import puppeteer from 'puppeteer';
 import type { Report } from "./engine-types/v4/api/IReport";
 import { Request, Response, NextFunction } from 'express';
-import { aceCheck } from './aceChecker';
+import { aceCheck, initializePagePool, closePagePool } from './aceChecker';
 import bodyParser from 'body-parser';
 import * as puppeteer from 'puppeteer';
 
@@ -51,6 +51,7 @@ app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
     browser = await puppeteer.launch({
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
+    await initializePagePool(browser, 5);
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });
@@ -62,6 +63,7 @@ app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
 
 process.on('SIGINT', async () => {
   console.log('Shutting down...');
+  await closePagePool();
   if (browser) {
     await browser.close();
   }
