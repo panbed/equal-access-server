@@ -7,7 +7,7 @@ import * as puppeteer from "puppeteer";
 // Since ace is loaded from a script tag in the js runtime, we need to declare it here
 declare var ace: any;
 
-const acePath = '../../ace-engine/dist/ace.js';
+const acePath = './engine/ace.js';
 
 export async function aceCheck(html: string, browser: puppeteer.Browser, guidelineIds?: string | string[]): Promise<Report> {
   const page = await browser.newPage();
