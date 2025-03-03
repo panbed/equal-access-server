@@ -1,4 +1,5 @@
 import type { Report } from "./engine-types/v4/api/IReport";
+import type { Issue } from "./engine-types/v4/api/IRule";
 import * as puppeteer from "puppeteer";
 
 // Since ace is loaded from a script tag in the js runtime, we need to declare it here
@@ -124,6 +125,7 @@ export async function aceCheck(html: string, browser: puppeteer.Browser, guideli
     console.timeEnd('evaluate-check');
     
     console.timeEnd('total-execution');
+    report.results = report.results.filter((result: Issue) => result.value[1] !== "PASS");
     return report;
   } finally {
     pagePool.releasePage(page, scriptAdded);

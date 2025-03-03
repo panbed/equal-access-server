@@ -7,6 +7,8 @@ import bodyParser from 'body-parser';
 import * as puppeteer from 'puppeteer';
 
 const app = express();
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb', extended: true}));
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
