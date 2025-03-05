@@ -10,6 +10,7 @@ const app = express();
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb', extended: true}));
 const PORT = process.env.PORT || 3000;
+const DEFAULT_ID = 'WCAG_2_1';
 
 app.use(bodyParser.json());
 
@@ -38,7 +39,7 @@ app.get('/', (_req, res) => {
  */
 app.post("/scan", asyncHandler(async (req, res) => {
   const html: string = req.body.html;
-  const guidelineIds: string | string[] = req.body.guidelineIds;
+  const guidelineIds: string | string[] = req.body.guidelineIds || DEFAULT_ID;
   const report: Report = await aceCheck(html, browser, guidelineIds);
   res.json(report);
 }));

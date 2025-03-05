@@ -44,6 +44,7 @@ class PagePool {
       return { page, hasScript: false };
     }
 
+    // Check if a page is available every 100ms
     return new Promise((resolve) => {
       const checkInterval = setInterval(() => {
         const availablePage = this.pages.find(p => !p.inUse);
