@@ -11,4 +11,4 @@
   limitations under the License.
 *****************************************************************************/
 import { Rule } from "../api/IRule";
-export declare let element_attribute_deprecated: Rule;
+export declare const element_attribute_deprecated: Rule;

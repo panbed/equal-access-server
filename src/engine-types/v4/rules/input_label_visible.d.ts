@@ -11,4 +11,4 @@
   limitations under the License.
 *****************************************************************************/
 import { Rule } from "../api/IRule";
-export declare let input_label_visible: Rule;
+export declare const input_label_visible: Rule;

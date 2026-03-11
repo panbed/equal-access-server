@@ -11,4 +11,4 @@
   limitations under the License.
 *****************************************************************************/
 import { Rule } from "../api/IRule";
-export declare let meta_redirect_optional: Rule;
+export declare const meta_redirect_optional: Rule;

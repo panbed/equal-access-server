@@ -11,4 +11,4 @@
   limitations under the License.
 *****************************************************************************/
 import { Rule } from "../api/IRule";
-export declare let combobox_active_descendant: Rule;
+export declare const combobox_active_descendant: Rule;

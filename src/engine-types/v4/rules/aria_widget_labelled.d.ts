@@ -11,4 +11,4 @@
   limitations under the License.
 *****************************************************************************/
 import { Rule } from "../api/IRule";
-export declare let aria_widget_labelled: Rule;
+export declare const aria_widget_labelled: Rule;

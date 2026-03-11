@@ -31,6 +31,8 @@ export interface IEngine {
     addRule(rule: Rule): any;
     addNlsMap(map: NlsMap): any;
     addHelpMap(map: NlsMap): any;
+    enableSourceMap(enable: boolean): any;
+    isSourceMapEnabled(): boolean;
 }
 export type NlsMap = {
     [key: string]: string[];

@@ -11,4 +11,4 @@
   limitations under the License.
 *****************************************************************************/
 import { Rule } from "../api/IRule";
-export declare let meta_refresh_delay: Rule;
+export declare const meta_refresh_delay: Rule;

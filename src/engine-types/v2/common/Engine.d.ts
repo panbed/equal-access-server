@@ -39,6 +39,26 @@ declare class WrappedRule {
      * @memberOf this
      */
     static convertNodeToSnippet(node: Element): string;
+    /**
+     * This function is responsible for finding the source location for a node, which can be added to a report.
+     * Supports debug directives in the following forms:
+     *   1. An attribute on the element itself:
+     *        ibm-a11y-debug="file.ts:10:5"
+     *   2. A comment node preceding the element (as a sibling or ancestor sibling):
+     *        <!-- ibm-a11y-debug: file.ts:10:5 -->
+     *   3. A wrapper element (e.g. div) whose first non-whitespace child is such a comment node.
+     *   4. An ancestor element that carries the ibm-a11y-debug attribute.
+     *
+     * Traversal: checks the node itself for an inline attribute, then scans previous siblings at
+     * each ancestor level upward (also checking each ancestor element's own inline attribute),
+     * stopping if a blank or 'end' marker is found.
+     *
+     * @param {Node} node - The DOM node to find source info for
+     * @return {string | null} - The source location string, or null if not found
+     *
+     * @memberOf this
+     */
+    static convertNodeToSource(node: Node, enabled?: boolean): string;
     run(engine: Engine, context: RuleContext, options?: {}, contextHierarchies?: RuleContextHierarchy): Issue[];
 }
 export declare class Engine implements IEngine {
@@ -54,6 +74,7 @@ export declare class Engine implements IEngine {
     };
     nlsMap: NlsMap;
     helpMap: HelpMap;
+    sourceMapEnabled: boolean;
     private inclRules;
     private exclRules;
     constructor();
@@ -63,6 +84,8 @@ export declare class Engine implements IEngine {
     getRulesIds(): string[];
     addRules(rules: Rule[]): void;
     addRule(rule: Rule, skipSort?: boolean): void;
+    enableSourceMap(enable: boolean): void;
+    isSourceMapEnabled(): boolean;
     _sortRules(): void;
     addNlsMap(map: NlsMap): void;
     addHelpMap(map: HelpMap): void;

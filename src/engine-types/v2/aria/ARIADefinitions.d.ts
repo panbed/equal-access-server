@@ -52,6 +52,11 @@ export declare class ARIADefinitions {
             prohibitedProps?: string[];
         };
     };
+    /** note:
+      * if a <fieldset> is disabled, the descendant form controls are all disabled except <legend>
+      * If an <optgroup> is disabled, the select is still interactive (unless otherwise disabled), but none of the items in the option group are selectable.
+      * When an element has the disabled attribute applied, the :disabled pseudo-class also applies to it.
+     */
     static elementsAllowedDisabled: string[];
     static elementsAllowedRequired: string[];
     static elementsAllowedReadOnly: string[];

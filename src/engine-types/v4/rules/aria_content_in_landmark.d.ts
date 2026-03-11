@@ -11,4 +11,4 @@
   limitations under the License.
 *****************************************************************************/
 import { Rule } from "../api/IRule";
-export declare let aria_content_in_landmark: Rule;
+export declare const aria_content_in_landmark: Rule;

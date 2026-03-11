@@ -11,4 +11,4 @@
   limitations under the License.
 *****************************************************************************/
 import { Rule } from "../api/IRule";
-export declare let form_submit_button_exists: Rule;
+export declare const form_submit_button_exists: Rule;

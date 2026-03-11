@@ -11,4 +11,4 @@
   limitations under the License.
 *****************************************************************************/
 import { Rule } from "../api/IRule";
-export declare let input_fields_grouped: Rule;
+export declare const input_fields_grouped: Rule;

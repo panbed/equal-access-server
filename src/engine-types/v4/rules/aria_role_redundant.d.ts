@@ -11,4 +11,4 @@
   limitations under the License.
 *****************************************************************************/
 import { Rule } from "../api/IRule";
-export declare let aria_role_redundant: Rule;
+export declare const aria_role_redundant: Rule;

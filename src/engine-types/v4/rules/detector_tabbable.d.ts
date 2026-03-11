@@ -11,4 +11,4 @@
     limitations under the License.
  *****************************************************************************/
 import { Rule } from "../api/IRule";
-export declare let detector_tabbable: Rule;
+export declare const detector_tabbable: Rule;

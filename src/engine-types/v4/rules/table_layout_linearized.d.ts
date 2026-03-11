@@ -11,4 +11,4 @@
   limitations under the License.
 *****************************************************************************/
 import { Rule } from "../api/IRule";
-export declare let table_layout_linearized: Rule;
+export declare const table_layout_linearized: Rule;

@@ -19,4 +19,7 @@ export { Checker };
 export { ARIAMapper } from "./v2/aria/ARIAMapper";
 export { Config } from "./v2/config/Config";
 export { DOMWalker } from "./v2/dom/DOMWalker";
+export { SRController } from "./v4/simulator/SRController";
+export { SRCursor } from "./v4/simulator/SRCursor";
+export { SRViewer } from "./v4/simulator/SRViewer";
 export declare function checkDemo(timeout?: number): void;

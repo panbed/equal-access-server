@@ -11,4 +11,4 @@
   limitations under the License.
 *****************************************************************************/
 import { Rule } from "../api/IRule";
-export declare let combobox_autocomplete_valid: Rule;
+export declare const combobox_autocomplete_valid: Rule;

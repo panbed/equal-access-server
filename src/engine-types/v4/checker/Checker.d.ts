@@ -91,6 +91,8 @@ export declare class Checker implements IChecker {
      * @deprecated See addGuideline
      */
     addRuleset(rs: Ruleset): void;
+    enableSourceMap(enable: boolean): void;
+    isSourceMapEnabled(): boolean;
     /**
      * Perform a check of the specified node/document
      * @param node DOMNode or Document on which to run the check
