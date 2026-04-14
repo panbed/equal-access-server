@@ -1,6 +1,7 @@
 import { NavigationMode } from "./SRTypes";
-import { SRCursor, SRCursorSkipFunc } from "./SRCursor";
+import { SRCursor, SRCursorMatchFunc, SRCursorSkipFunc } from "./SRCursor";
 export declare namespace SRNavigator {
+    function getStartFunc(mode: NavigationMode): SRCursorMatchFunc;
     function getSkipFunc(mode: NavigationMode): SRCursorSkipFunc;
     function jumpCurrent(mode: NavigationMode, walker: SRCursor): SRCursor;
     function jumpCurrentEnd(mode: NavigationMode, walker: SRCursor): SRCursor;

@@ -7,11 +7,12 @@ import { NavigationMode, NavigationResult, RenderResult } from "./SRTypes";
 export declare class SRController {
     private rootElement;
     static singleton: any;
-    static getController(): any;
+    static getController(ctrlDoc?: HTMLDocument): SRController;
     /** The current point of regard */
     private pointOfRegard;
     private mutationObserver;
     private liveListeners;
+    private ctrlDoc;
     /**
      * Creates a new SRController
      * @param rootElement The root element to start from (defaults to document.body)
@@ -62,8 +63,8 @@ export declare class SRController {
     };
     private static commonParent;
     static renderAll(mode: NavigationMode): string[];
-    static renderAllDetail(mode: NavigationMode): RenderResult[];
-    static renderStructure(): Array<{
+    static renderAllDetail(doc: HTMLDocument, mode: NavigationMode): RenderResult[];
+    static renderStructure(doc: HTMLDocument): Array<{
         [key: string]: string;
     }>;
 }

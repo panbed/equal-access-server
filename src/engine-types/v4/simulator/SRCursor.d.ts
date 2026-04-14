@@ -106,6 +106,7 @@ export declare class SRCursor {
      * @returns The current node as HTMLElement, or undefined if not an element
      */
     getElement(): HTMLElement;
+    getParentElement(): SRCursor;
     /**
      * Checks if the cursor is positioned at an end tag
      * @returns true if at an end tag, false if at a start tag

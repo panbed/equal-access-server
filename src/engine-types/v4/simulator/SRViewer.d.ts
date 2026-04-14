@@ -17,6 +17,7 @@ export declare class SROverlay {
      * @param controller The SRController instance to use for navigation
      */
     constructor(srViewer: SRViewer);
+    private createDOMElement;
     /**
      * Creates the overlay UI elements and adds them to the DOM
      */
@@ -54,11 +55,12 @@ export declare class SRViewer {
     private keyboardHandler;
     /** Focus event handler */
     private focusHandler;
+    viewerDoc: HTMLDocument;
     /**
      * Creates a new SRViewer
      * @param rootElement The root element to start from (defaults to document.body)
      */
-    constructor(_rootElement?: Node);
+    constructor(rootElement?: Node);
     showAll(bEnableAllMode?: boolean): void;
     toggleSpeech(): void;
     /**

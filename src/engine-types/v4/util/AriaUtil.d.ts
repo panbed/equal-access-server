@@ -482,6 +482,15 @@ export declare class AriaUtil {
     static getAriaOwnsWithRoleHidden(element: any, roleName: any, considerHiddenSetting: any, considerImplicitRoles?: any): any;
     static hasAriaLabel(element: any): boolean;
     static hasUniqueAriaLabelsLocally(elements: any, isGlobal: any): boolean;
+    /**
+     * Get text content from an element, excluding script and style elements
+     * This is a simplified version that doesn't go through full accessible name computation
+     * to avoid circular dependencies when called from getAriaLabel
+     *
+     * Note: When an element is referenced by aria-labelledby, its content is included
+     * even if the element is hidden (per ARIA spec)
+     */
+    private static getTextContentExcludingScripts;
     static getAriaLabel(ele: any): any;
     static getAriaDescription(ele: any): any;
     static findAriaLabelDupes(elements: any): {};
